@@ -1,0 +1,10 @@
+---
+ansible-navigator:
+  execution-environment:
+    image: ghcr.io/ansible/creator-ee:latest
+  logging:
+    level: debug
+    append: False
+  playbook-artifact:
+    enable: True
+    save-as: "{playbook_dir}/artifacts/{playbook_name}-artifact-{time_stamp}.json"

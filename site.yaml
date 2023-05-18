@@ -1,0 +1,33 @@
+- name: Run the demonstration playbook
+  hosts: eos
+  gather_facts: false
+  tasks:
+    - name: Clone the source repository
+      ansible.scm.git_retrieve:
+        branch:
+          name: main
+          duplicate_detection: false
+        origin:
+          url: git@github.com:cidrblock/summit23-artifacts.git
+      register: repository
+
+    - name: Change the management interface description
+      arista.eos.eos_interfaces:
+        config:
+          - name: Management0
+            description: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
+        state: merged
+
+    - name: Backup the running configuration
+      arista.eos.eos_config:
+        backup: true
+        backup_options:
+          dir_path: "{{ repository.path }}"
+          filename: "{{ inventory_hostname }}"
+
+    - name: Push the repository
+      ansible.scm.git_publish:
+        path: "{{ repository.path }}"
+        user:
+          name: cidrblock
+          email: bthornto@redhat.com
