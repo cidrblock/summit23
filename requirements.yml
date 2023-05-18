@@ -1,2 +1,4 @@
-ansible.network
-ansible.scm
+collections:
+  - name: ansible.network
+  - name: ansible.scm
+

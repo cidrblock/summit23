@@ -1,7 +1,7 @@
 all:
   hosts:
     eos:
-      ansible_host: 10.88.0.3
+      ansible_host: 10.88.0.2
       ansible_user: admin
       ansible_ssh_pass: password
       ansible_network_os: arista.eos.eos

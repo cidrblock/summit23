@@ -1,10 +1,15 @@
 ---
 ansible-navigator:
+  editor:
+    command: code -g {filename}:{line_number}
+    console: false
   execution-environment:
     image: ghcr.io/ansible/creator-ee:latest
+    pull:
+      policy: never
   logging:
     level: debug
     append: False
   playbook-artifact:
     enable: True
-    save-as: "{playbook_dir}/artifacts/{playbook_name}-artifact-{time_stamp}.json"
+    save-as: "{playbook_dir}/artifacts/{playbook_name}-artifact.json"

@@ -25,7 +25,7 @@
           dir_path: "{{ repository.path }}"
           filename: "{{ inventory_hostname }}"
 
-    - name: Push the repository
+    - name: push the repository
       ansible.scm.git_publish:
         path: "{{ repository.path }}"
         user:
